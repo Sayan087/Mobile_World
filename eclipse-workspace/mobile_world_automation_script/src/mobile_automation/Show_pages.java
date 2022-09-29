@@ -17,9 +17,9 @@ public class Show_pages {
 		
 	}
 	
-@FindBy(xpath="//button[normalize-space()='SIGN IN']")
+@FindBy(xpath="//button[@type='submit']")
 WebElement signin;
-@FindBy(xpath="//a[normalize-space()='Sign up']")	
+@FindBy(css="a[href='signup.html']")	
 WebElement signup;
 @FindBy(xpath="//input[@placeholder='First Name']")
 WebElement firstname;	
@@ -67,12 +67,12 @@ public void goToRegister() {
 @FindBy(id="username")
 WebElement username;
 @FindBy(id="password")
-WebElement password12;
+WebElement password2;
 @FindBy(css="a[type='submit']")
 WebElement login;
 public void signin(String Username, String Password) {
 	username.sendKeys(Username);
-	password12.sendKeys(Password);
+	password2.sendKeys(Password);
 }
 public void goToLogin() {
 	login.click();
@@ -96,18 +96,18 @@ public void goToContact() {
 	support.click();
 	contact_us.click();
 }
-public void goTowindow() {
-	Set<String> windows = driver.getWindowHandles(); //[parentid,childid,subchildId]
+public void goTowindow(String Username,String Email,String mobile,String msg) {
+	Set<String> windows = driver.getWindowHandles(); //[parentId,childId]
 
 	Iterator<String>it = windows.iterator();
 	String parentId = it.next();
     String childId = it.next();
 	driver.switchTo().window(childId);
 	driver.manage().window().maximize();
-	driver.findElement(By.cssSelector("input[placeholder='Username']")).sendKeys("Sayan");
-	driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys("shayangiri786@gmail.com");
-	driver.findElement(By.cssSelector("input[placeholder='Phone']")).sendKeys("7866843480");
-	driver.findElement(By.cssSelector("textarea[placeholder='Message']")).sendKeys("Good Product");
+	driver.findElement(By.cssSelector("input[placeholder='Username']")).sendKeys(Username);
+	driver.findElement(By.cssSelector("input[placeholder='Email']")).sendKeys(Email);
+	driver.findElement(By.cssSelector("input[placeholder='Phone']")).sendKeys(mobile);
+	driver.findElement(By.cssSelector("textarea[placeholder='Message']")).sendKeys(msg);
 	driver.findElement(By.cssSelector("input[type='submit']")).click();
 	
 }
